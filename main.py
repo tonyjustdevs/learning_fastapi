@@ -7,8 +7,13 @@ print_start_info(__file__)
 ############################## START CODE HERE ###############################
 ##############################################################################
 
+from fastapi import FastAPI
 
+app = FastAPI()
 
+@app.get("/")
+def root_fn():
+    return "G'day mate 🦘🦘🦘!"
 
 
 
