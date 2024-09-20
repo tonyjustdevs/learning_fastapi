@@ -46,14 +46,18 @@ def get_u1_instance(userid: int=0)->User1_cls:
 
 # Routes
 @app.get("/")
-def root_fn():
+def root_endpoint_fn():
     return "G'day mate 🦘🦘🦘!"
 
 @app.get("/user/0",response_model=User1_cls)
-def root_fn():
+def default_user_endpoint_fn():
     u1_instance = get_u1_instance()
     return u1_instance
 
+@app.get("/user/{userid}",response_model=User1_cls)
+def userid_endpoint_fn(userid:int):
+    u1_instance = get_u1_instance(userid)
+    return u1_instance
 
 ##############################################################################
 ############################## END CODE HERE #################################
@@ -64,5 +68,5 @@ print_end_info(__file__)
 # DONE [2] Build Root GET endpoint ("/") #2
 # DONE [3] Create U1 and U1a User classes (pydantic models) #3
 # DONE [4] Create U1 and U1a User sample data (userid=0) #4
-# TODO [5] Build Default User Get endpoint with ("/user/0", pydantic response model) #5
+# DONE [5] Build Default User Get endpoint with ("/user/0", pydantic response model) #5
 # TODO [6] Build Path Parameter User Get endpoint ("/user/{userid}") #6
