@@ -37,7 +37,12 @@ def get_u1_instance(userid: int=0)->User1_cls:
           }
     }    
     
-    return None
+    user_u1_dict = u1_dicts[0]
+    user_u1a_dict = u1a_dicts[0] 
+    user_u1u1a_dict = {**user_u1_dict,**user_u1a_dict} #unpack dictionary in a function allocated arguments to fields
+    print(user_u1u1a_dict)
+    u1_instance = User1_cls(**user_u1u1a_dict)
+    return u1_instance
 
 # Routes
 @app.get("/")
