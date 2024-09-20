@@ -1,0 +1,13 @@
+- Create U2 POST Response class (pydantic model)
+- Build Query Parameters GET endpoint ({start},{limit},"/user/{userid}")
+Put
+- Build PUT endpoint ("/user/{userid}")
+- Build DELETE endpoint ("/user/{userid}")
+- Refactor to Async Functions
+- Refactor App Directory Structure
+- Add API Routers
+- Add HTTP Exception
+- Add Exception Class
+- Add Logging
+- Add Custom Exception Handlers
+- Add Headers and Dependencies
