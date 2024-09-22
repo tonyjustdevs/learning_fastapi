@@ -123,9 +123,9 @@ print_end_info(__file__)
 # DZONE [5] Build Default User Get endpoint with ("/user/0", pydantic response model) #5
 # DZONE [6] Build Path Parameter User Get endpoint ("/user/{userid}") #6
 # zDONE [#12 Create U2 POST Response class (pydantic model)]  [#11/fastapi]
-    #zDONE [#24 1. Accepts post body request (u1 class) [#12]]  [#12/fastapi]
-    #zDONE [#25 2. create new user of U1 class [#12]]  [#12/fastapi]
-    #zDONE [#26 2a. creates new user id [#12]]  [#12/fastapi]
-    #zDONE [#27 2b. creates new user in sample dicts [#12]]  [#12/fastapi]
-    #zDONE [#28 3. return u2 class post response [#12]]  [#12/fastapi]
-    #zDONE [#29 bug fix]
+#zDONE [#24 1. Accepts post body request (u1 class) [#12]]  [#12/fastapi]
+#zDONE [#25 2. create new user of U1 class [#12]]  [#12/fastapi]
+#zDONE [#26 2a. creates new user id [#12]]  [#12/fastapi]
+#zDONE [#27 2b. creates new user in sample dicts [#12]]  [#12/fastapi]
+#zDONE [#28 3. return u2 class post response [#12]]  [#12/fastapi]
+#zDONE [#29 bug fix]
