@@ -95,25 +95,60 @@ def post_u1_endpoint_fn(u1_postbodyrequest:User1_cls): #24
                             u2_users_attr=users)
     return u2_instance #28
 
+# class User2_cls(BaseModel): #12
+#     u2_userid_attr: int
+#     u2_users_attr: int
+
+class U3_Users_cls(BaseModel): #35
+    u3_users_attr: List[User1_cls]
+    
+
+def get_u3_users_fn(start: int, limit: int)->U3_Users_cls:
+    u1_users_list = []
+
+    start = 0
+    limit = 2
+    
+    userid = 0
+    no_users = calc_nbr_of_urs()
+    for userid in u1_dicts.keys():
+        if userid < start:
+            next
+        else:
+            print(f"userid: {userid}")
+            u1_instance = get_u1_instance_fn(userid)
+            u1_users_list.append(u1_instance)
+    return u1_users_list
+# @app.get("/user/",response_model=U3_Users_cls) #33
+@app.get("/user/",response_model=U3_Users_cls) #33
+def userid_endpoint_fn(start:int=0, limit:int=2): #34
+    u1_users_list = get_u3_users_fn(start, limit)
+    u3_instance = U3_Users_cls(u3_users_attr=u1_users_list)
+    return u3_instance #36
 
 ##############################################################################
 ############################## END CODE HERE #################################
 ##############################################################################
 print_end_info(__file__)  
 
+#DONE [#13 Build Query Parameters GET endpoint ({start},{limit},"/user/{userid}")]  [#11/fastapi]
+#DONE [#33 create new query_parameters endpoint u3_endpt [13]]  [#13/fastapi]
+#DONE [#34 create start and limit parameters  [13]]  [#13/fastapi]
+#DONE [#35 create new u3 class - list of u1 [13]]  [#13/fastapi]
+#DONE [#36 create u3_endpt return u3_class [13]]  [#13/fastapi]
 
-#TODO [#11 Build Simple Fast API App]  [#12/fastapi]
-#TODO [#13 Build Query Parameters GET endpoint ({start},{limit},"/user/{userid}")]  [#11/fastapi]
-#TODO [#14 Build PUT endpoint ("/user/{userid}")]  [#11/fastapi]
-#TODO [#15 Build DELETE endpoint ("/user/{userid}")]  [#11/fastapi]
-#TODO [#16 Refactor to Async Functions]  [#11/fastapi]
-#TODO [#17 Refactor App Directory Structure]  [#11/fastapi]
-#TODO [#18 Add API Routers]  [#11/fastapi]
-#TODO [#19 Add HTTP Exception]  [#11/fastapi]
-#TODO [#20 Add Exception Class]  [#11/fastapi]
-#TODO [#21 Add Logging]  [#11/fastapi]
-#TODO [#22 Add Custom Exception Handlers]  [#11/fastapi]
-#TODO [#23 Add Headers and Dependencies]  [#11/fastapi]
+
+# aTODO [#11 Build Simple Fast API App]  [#12/fastapi]
+# aTODO [#14 Build PUT endpoint ("/user/{userid}")]  [#11/fastapi]
+# aTODO [#15 Build DELETE endpoint ("/user/{userid}")]  [#11/fastapi]
+# aTODO [#16 Refactor to Async Functions]  [#11/fastapi]
+# aTODO [#17 Refactor App Directory Structure]  [#11/fastapi]
+# aTODO [#18 Add API Routers]  [#11/fastapi]
+# aTODO [#19 Add HTTP Exception]  [#11/fastapi]
+# aTODO [#20 Add Exception Class]  [#11/fastapi]
+# aTODO [#21 Add Logging]  [#11/fastapi]
+# aTODO [#22 Add Custom Exception Handlers]  [#11/fastapi]
+# aTODO [#23 Add Headers and Dependencies]  [#11/fastapi]
 
 
 
