@@ -95,31 +95,23 @@ def post_u1_endpoint_fn(u1_postbodyrequest:User1_cls): #24
                             u2_users_attr=users)
     return u2_instance #28
 
-# class User2_cls(BaseModel): #12
-#     u2_userid_attr: int
-#     u2_users_attr: int
-
 class U3_Users_cls(BaseModel): #35
     u3_users_attr: List[User1_cls]
     
 
-def get_u3_users_fn(start: int, limit: int)->U3_Users_cls:
+def get_u3_users_fn(start: int, limit: int)->U3_Users_cls: #13
     u1_users_list = []
-
-    start = 0
-    limit = 2
-    
-    userid = 0
-    no_users = calc_nbr_of_urs()
-    for userid in u1_dicts.keys():
-        if userid < start:
-            next
+    n_users = len(u1_dicts) # 1
+    for userid in range(n_users):  # [0,1,2]
+        if userid<start: 
+            continue
         else:
-            print(f"userid: {userid}")
             u1_instance = get_u1_instance_fn(userid)
             u1_users_list.append(u1_instance)
+            if len(u1_users_list)==limit:
+                break
     return u1_users_list
-# @app.get("/user/",response_model=U3_Users_cls) #33
+
 @app.get("/user/",response_model=U3_Users_cls) #33
 def userid_endpoint_fn(start:int=0, limit:int=2): #34
     u1_users_list = get_u3_users_fn(start, limit)
