@@ -61,30 +61,31 @@ def get_u1_instance_fn(userid: int=0)->User1_cls:
     u1_instance = User1_cls(**user_u1u1au4_dict)
     return u1_instance
 
-def create_new_u1_user_fn(u1_postbodyrequest:User1_cls)-> User2_cls:
-    # get user info
+def create_new_update_u1_user_fn(u1_postbodyrequest:User1_cls,
+                                 userid: int=None)-> User2_cls: #41
+    
+    if not userid in u1_dicts: #42 
+        userid = len(u1_dicts) #26 # create new userid
+    
     u1_country_attr     = u1_postbodyrequest.u1_country_attr
     u1_login_attr       = u1_postbodyrequest.u1_login_attr
     u1a_score_attr      = u1_postbodyrequest.u1a_score_attr  
     u1a_weapons_attr    = u1_postbodyrequest.u1a_weapons_attr
 
-    # create new userid
-    new_userid = len(u1_dicts) #26
-    
-    # create new user u1 (from postbodyreq) #27
-    u1_dicts[new_userid] =  {
+    # create new user #27 or update #42 
+    u1_dicts[userid] =  {
             'u1_login_attr':u1_login_attr,
             'u1_country_attr':u1_country_attr
     }
-    u1a_dicts[new_userid] = {
+    u1a_dicts[userid] = {
             'u1a_score_attr':u1a_score_attr,
             'u1a_weapons_attr': u1a_weapons_attr
     }
-    u4_dicts[new_userid] = {
-            'u4_userid':new_userid
+    u4_dicts[userid] = {
+            'u4_userid':userid
     }
     
-    return new_userid # return new_userid
+    return userid # return new_userid
 
 def get_u3_users_fn(start: int, limit: int)->U3_Users_cls: #13
     u1_users_list = []
@@ -116,7 +117,7 @@ def userid_endpoint_fn(userid:int):
 
 @app.post("/user",response_model=User2_cls) 
 def post_u1_endpoint_fn(u1_postbodyrequest:User1_cls): #24
-    new_userid = create_new_u1_user_fn(u1_postbodyrequest) #25
+    new_userid = create_new_update_u1_user_fn(u1_postbodyrequest) #25
     users = calc_nbr_of_urs()
     u2_instance = User2_cls(u2_userid_attr=new_userid,
                             u2_users_attr=users)
@@ -139,9 +140,14 @@ print_end_info(__file__)
 #DONE [#35 create new u3 class - list of u1 [13]]  [#13/fastapi]
 #DONE [#36 create u3_endpt return u3_class [13]]  [#13/fastapi]
 
-
 # aTODO [#11 Build Simple Fast API App]  [#12/fastapi]
 # aTODO [#14 Build PUT endpoint ("/user/{userid}")]  [#11/fastapi]
+        #TODO [#41 update function [create_new_u1_user_fn] to optionally input [userid] (#14)]  [#14/fastapi]
+        #TODO [#42 create user: if user not exist [userid] (#14)]  [#14/fastapi]
+        #TODO [#43 update user: if user exists (dicts) (#14)]  [#14/fastapi]
+        #TODO [#44 update PUT endpoint (#14)]  [#14/fastapi]
+
+
 # aTODO [#15 Build DELETE endpoint ("/user/{userid}")]  [#11/fastapi]
 # aTODO [#16 Refactor to Async Functions]  [#11/fastapi]
 # aTODO [#17 Refactor App Directory Structure]  [#11/fastapi]
