@@ -141,10 +141,6 @@ print_end_info(__file__)
 
 # aTODO [#11 Build Simple Fast API App]  [#12/fastapi]
 # aTODO [#14 Build PUT endpoint ("/user/{userid}")]  [#11/fastapi]
-        #TODO [#41 update function [create_new_u1_user_fn] to optionally input [userid] (#14)]  [#14/fastapi]
-        #TODO [#42 create user: if user not exist [userid] (#14)]  [#14/fastapi]
-        #TODO [#43 update user: if user exists (dicts) (#14)]  [#14/fastapi]
-        #TODO [#44 update PUT endpoint (#14)]  [#14/fastapi]
 
 
 # aTODO [#15 Build DELETE endpoint ("/user/{userid}")]  [#11/fastapi]
@@ -176,3 +172,7 @@ print_end_info(__file__)
 #zDONE [#34 create start and limit parameters  [13]]  [#13/fastapi]
 #zDONE [#35 create new u3 class - list of u1 [13]]  [#13/fastapi]
 #zDONE [#36 create u3_endpt return u3_class [13]]  [#13/fastapi]
+#zDONE [#41 update function [create_new_u1_user_fn] to optionally input [userid] (#14)]  [#14/fastapi]
+#zDONE [#42 create user: if user not exist [userid] (#14)]  [#14/fastapi]
+#zDONE [#43 update user: if user exists (dicts) (#14)]  [#14/fastapi]
+#zDONE [#44 update PUT endpoint (#14)]  [#14/fastapi]
