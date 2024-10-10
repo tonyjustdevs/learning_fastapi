@@ -133,6 +133,18 @@ def userid_endpoint_fn(start:int=0, limit:int=2): #34
 def post_u1_endpoint_fn(u1_postbodyrequest:User1_cls,userid:int): #24
     create_new_update_u1_user_fn(u1_postbodyrequest=u1_postbodyrequest  , userid=userid) #25
 
+def delete_u1_user_fn(userid: int):
+    if userid in u1_dicts:
+        del u1_dicts[userid]
+        del u1a_dicts[userid]
+        del u4_dicts[userid]
+    return None
+
+@app.delete("/user/{userid}") #15
+def delete_u1_endpoint_fn(userid:int): 
+    delete_u1_user_fn(userid=userid) 
+
+
 ##############################################################################
 ############################## END CODE HERE #################################
 ##############################################################################
