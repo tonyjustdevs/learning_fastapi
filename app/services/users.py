@@ -27,11 +27,11 @@ class User_Service:
         pass
     
     @staticmethod
-    def calc_nbr_of_urs()->int:
-        return len(u1_dicts)
+    async def calc_nbr_of_urs()->int:
+        return await len(u1_dicts)
 
     @staticmethod
-    def get_u1_instance_fn(userid: int=0)->User1_cls:
+    async def get_u1_instance_fn(userid: int=0)->User1_cls:
         user_u1_dict = u1_dicts[userid]     #29
         user_u1a_dict = u1a_dicts[userid]   #29
         user_u4_dict = u4_dicts[userid]   #39
@@ -41,7 +41,7 @@ class User_Service:
         return u1_instance
 
     @staticmethod
-    def create_new_update_u1_user_fn(u1_postbodyrequest:User1_cls,
+    async def create_new_update_u1_user_fn(u1_postbodyrequest:User1_cls,
                                     userid: int=None)-> User2_cls: #41
         
         if not userid in u1_dicts: #42 
@@ -81,24 +81,24 @@ class User_Service:
         return u1_users_list
 
     @staticmethod
-    def delete_u1_user_fn(userid: int):
+    async def delete_u1_user_fn(userid: int):
         print(f".......inside delete_u1_fn with argument userid: {userid}")
         if userid in u1_dicts:
             del u1_dicts[userid]
-            print("Successfully deleted {userid} from u1_dicts")
+            print(f"Successfully deleted {userid} from u1_dicts")
             del u1a_dicts[userid]
-            print("Successfully deleted {userid} from u1a_dicts")
+            print(f"Successfully deleted {userid} from u1a_dicts")
             del u4_dicts[userid]
-            print("Successfully deleted {userid} from u4_dicts")
+            print(f"Successfully deleted {userid} from u4_dicts")
         return None
 
-    def delete_u1v2_user_fn(self, userid: int):
+    async def delete_u1v2_user_fn(self, userid: int):
         print(f".......inside delete_u1_fn with argument userid: {userid}")
         if userid in u1_dicts:
             del u1_dicts[userid]
-            print("Successfully deleted {userid} from u1_dicts")
+            print(f"Successfully deleted {userid} from u1_dicts")
             del u1a_dicts[userid]
-            print("Successfully deleted {userid} from u1a_dicts")
+            print(f"Successfully deleted {userid} from u1a_dicts")
             del u4_dicts[userid]
-            print("Successfully deleted {userid} from u4_dicts")
+            print(f"Successfully deleted {userid} from u4_dicts")
         return None
