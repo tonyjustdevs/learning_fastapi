@@ -15,16 +15,8 @@ from app.routes.users import user_router
 app = FastAPI()
 app.include_router(user_router)
 
-def delete_u1_user_fn(userid: int):
-    if userid in u1_dicts:
-        del u1_dicts[userid]
-        del u1a_dicts[userid]
-        del u4_dicts[userid]
-    return None
 
-@app.delete("/user/{userid}") #15
-def delete_u1_endpoint_fn(userid:int): 
-    delete_u1_user_fn(userid=userid) 
+
 
 
 ##############################################################################
