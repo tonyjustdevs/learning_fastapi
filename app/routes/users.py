@@ -41,7 +41,18 @@ def create_user_router():
     def post_u1_endpoint_fn(u1_postbodyrequest:User1_cls,userid:int): #24
         user_service.create_new_update_u1_user_fn(u1_postbodyrequest=u1_postbodyrequest  , userid=userid) #25
 
+    @user_router.delete("/user/{userid}/delete") #15
+    def delete_u1_endpoint_fn(userid:int): 
+        print(f"Attemping to delete {userid} via static_method")
+        user_service.delete_u1_user_fn(userid=userid) 
+
+    @user_router.delete("/user/{userid}/delete-v2") #15
+    def delete_u1v2_endpoint_fn(userid:int): 
+        print(f"Attemping to delete {userid}via instance_method")
+        user_service.delete_u1v2_user_fn(userid=userid) 
+
     return user_router
 
 
 user_router = create_user_router()
+
