@@ -1,6 +1,6 @@
 from app.schemas.users import User1_cls, User2_cls, U3_Users_cls
 from app.services.users import User_Service
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 import logging
 
@@ -15,9 +15,6 @@ def create_user_router():
     
     user_router     = APIRouter(prefix="/custom_router_prefix_user", tags=["custom_users_tag"])
     user_service    = User_Service()
-    @user_router.get("/")
-    async def root_endpoint_fn():
-        return "G'day mate 🦘🦘🦘!"
 
     @user_router.get("/0",response_model=User1_cls)
     async def default_user_endpoint_fn():
@@ -50,12 +47,18 @@ def create_user_router():
     @user_router.delete("/{userid}/delete") #15
     async def delete_u1_endpoint_fn(userid:int): 
         print(f"Attemping to delete {userid} via static_method")
-        await user_service.delete_u1_user_fn(userid=userid) 
-
-    @user_router.delete("/{userid}/delete-v2") #15
-    async def delete_u1v2_endpoint_fn(userid:int): 
-        print(f"Attemping to delete {userid}via instance_method")
-        await user_service.delete_u1v2_user_fn(userid=userid) 
+        try:
+            await user_service.delete_u1_user_fn(userid=userid) 
+        except KeyError:
+            # print("TP-KeyError caught in try-except!")
+            # raise HTTPException(status_code=404, detail=f"User [{userid}] does not exist!")
+            raise HTTPException(status_code=404, detail= {"msg": "User does not exist!",
+                                                          "userid": userid})
+            
+    # @user_router.delete("/{userid}/delete-v2") #15
+    # async def delete_u1v2_endpoint_fn(userid:int): 
+        # print(f"Attemping to delete {userid}via instance_method")
+        # await user_service.delete_u1v2_user_fn(userid=userid) 
 
     return user_router
 

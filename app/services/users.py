@@ -31,7 +31,7 @@ class User_Service:
         return await len(u1_dicts)
 
     @staticmethod
-    async def get_u1_instance_fn(userid: int=0)->User1_cls:
+    def get_u1_instance_fn(userid: int=0)->User1_cls:
         user_u1_dict = u1_dicts[userid]     #29
         user_u1a_dict = u1a_dicts[userid]   #29
         user_u4_dict = u4_dicts[userid]   #39
@@ -83,22 +83,18 @@ class User_Service:
     @staticmethod
     async def delete_u1_user_fn(userid: int):
         print(f".......inside delete_u1_fn with argument userid: {userid}")
-        if userid in u1_dicts:
-            del u1_dicts[userid]
-            print(f"Successfully deleted {userid} from u1_dicts")
-            del u1a_dicts[userid]
-            print(f"Successfully deleted {userid} from u1a_dicts")
-            del u4_dicts[userid]
-            print(f"Successfully deleted {userid} from u4_dicts")
+        del u1_dicts[userid]
+        del u1a_dicts[userid]
+        del u4_dicts[userid]
         return None
 
-    async def delete_u1v2_user_fn(self, userid: int):
-        print(f".......inside delete_u1_fn with argument userid: {userid}")
-        if userid in u1_dicts:
-            del u1_dicts[userid]
-            print(f"Successfully deleted {userid} from u1_dicts")
-            del u1a_dicts[userid]
-            print(f"Successfully deleted {userid} from u1a_dicts")
-            del u4_dicts[userid]
-            print(f"Successfully deleted {userid} from u4_dicts")
-        return None
+    # async def delete_u1v2_user_fn(self, userid: int):
+    #     print(f".......inside delete_u1_fn with argument userid: {userid}")
+    #     if userid in u1_dicts:
+    #         del u1_dicts[userid]
+    #         print(f"Successfully deleted {userid} from u1_dicts")
+    #         del u1a_dicts[userid]
+    #         print(f"Successfully deleted {userid} from u1a_dicts")
+    #         del u4_dicts[userid]
+    #         print(f"Successfully deleted {userid} from u4_dicts")
+    #     return None
