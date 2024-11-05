@@ -5,6 +5,7 @@ from fastapi import APIRouter, HTTPException
 import logging
 
 logger = logging.getLogger(__name__)
+logging.basicConfig(filename="log.txt")
 
 def create_user_router():
     
