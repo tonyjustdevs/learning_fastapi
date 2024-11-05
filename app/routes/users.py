@@ -2,8 +2,14 @@ from app.schemas.users import User1_cls, User2_cls, U3_Users_cls
 from app.services.users import User_Service
 from fastapi import APIRouter
 
-# Routes
-# def create_user_router():
+import logging
+
+logger = logging.getLogger(__name__)
+print(__name__)
+print(type(__name__))
+print(logger)
+print(type(logger))
+
 
 def create_user_router():
     
