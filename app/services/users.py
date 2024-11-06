@@ -31,7 +31,7 @@ class User_Service:
         return await len(u1_dicts)
 
     @staticmethod
-    def get_u1_instance_fn(userid: int=0)->User1_cls:
+    async def get_u1_instance_fn(userid: int=0)->User1_cls:
         user_u1_dict = u1_dicts[userid]     #29
         user_u1a_dict = u1a_dicts[userid]   #29
         user_u4_dict = u4_dicts[userid]   #39
