@@ -1,13 +1,20 @@
-- Create U2 POST Response class (pydantic model)
-- Build Query Parameters GET endpoint ({start},{limit},"/user/{userid}")
-Put
-- Build PUT endpoint ("/user/{userid}")
-- Build DELETE endpoint ("/user/{userid}")
-- Refactor to Async Functions
-- Refactor App Directory Structure
-- Add API Routers
-- Add HTTP Exception
-- Add Exception Class
-- Add Logging
-- Add Custom Exception Handlers
-- Add Headers and Dependencies
+### High-Level Psuedo Steps
+- [Build Get "user/{userid}" endpoint](https://github.com/tonyjustdevs/learning_fastapi/issues/1)
+- [Build Root GET endpoint ("/")](https://github.com/tonyjustdevs/learning_fastapi/issues/2)
+- [Create U1 and U1a User classes (pydantic models)](https://github.com/tonyjustdevs/learning_fastapi/issues/3)
+- [Create U1 and U1a User sample data (userid=0)](https://github.com/tonyjustdevs/learning_fastapi/issues/4)
+- [Build Default User Get endpoint with ("/user/0", pydantic response model)](https://github.com/tonyjustdevs/learning_fastapi/issues/5)
+- [Build Path Parameter User Get endpoint ("/user/{userid}")](https://github.com/tonyjustdevs/learning_fastapi/issues/6)
+- [Create U2 POST Response class (pydantic model)](https://github.com/tonyjustdevs/learning_fastapi/issues/7)
+- [Create POST Response Endpoint](https://github.com/tonyjustdevs/learning_fastapi/issues/12)
+- [Build Query Parameters GET endpoint ({start},{limit},"/user/{userid}")](https://github.com/tonyjustdevs/learning_fastapi/issues/13)
+- [Build PUT endpoint ("/user/{userid}")](https://github.com/tonyjustdevs/learning_fastapi/issues/14)
+- [Build DELETE endpoint ("/user/{userid}")](https://github.com/tonyjustdevs/learning_fastapi/issues/15)
+- [Refactor to Async Functions](https://github.com/tonyjustdevs/learning_fastapi/issues/16)
+- [Refactor App Directory Structure](https://github.com/tonyjustdevs/learning_fastapi/issues/17)
+- [Add API Routers](https://github.com/tonyjustdevs/learning_fastapi/issues/18)
+- [Add HTTP Exception](https://github.com/tonyjustdevs/learning_fastapi/issues/19)
+- [Add Exception Class](https://github.com/tonyjustdevs/learning_fastapi/issues/20)
+- [Add Logging](https://github.com/tonyjustdevs/learning_fastapi/issues/21)
+- [Add Custom Exception Handlers](https://github.com/tonyjustdevs/learning_fastapi/issues/22)
+- [Add Headers and Dependencies](https://github.com/tonyjustdevs/learning_fastapi/issues/23)
