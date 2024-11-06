@@ -2,8 +2,10 @@ from app.schemas.users import User1_cls, User2_cls, U3_Users_cls
 from app.services.users import User_Service
 from fastapi import APIRouter, HTTPException
 
-# Routes
-# def create_user_router():
+import logging
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(filename="log.txt")
 
 def create_user_router():
     
