@@ -3,9 +3,27 @@ from app.services.users import User_Service
 from fastapi import APIRouter, HTTPException
 
 import logging
+# Unable to remove existing handlers from the logger
+
+logging.getLogger().handlers = [] # #BUG Issue#64 temp fix remove persistent cached tony_cool_logs.txt from being used
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(filename="log.txt")
+logging.basicConfig(
+    format="%(levelname)-6s %(name)-20s %(asctime)s.%(msecs)03d \n\t\t\t %(message)s",
+    datefmt="%Y-%m-%d-%H:%M:%S",
+    filename="log.txt")
+logger.setLevel(logging.DEBUG) # [diwec]: [debug->info->warning->error->critical]
+# ie if logging.ERROR->only error+critical logged
+
+# print(f"[print]-{cached_str}")
+# cached_str = f"__cached__: [{__cached__}]" # temp visibility
+# logger.info(f"[LOGGER]-{cached_str}")
+
+
+consoleHandler = logging.StreamHandler()
+# logger.addHandler(consoleHandler)
+full_logger = logging.getLogger("") #Dont understand what this actually does.
+full_logger.addHandler(consoleHandler)
 
 def create_user_router():
     
@@ -42,13 +60,14 @@ def create_user_router():
 
     @user_router.delete("/{userid}/delete") #15
     async def delete_u1_endpoint_fn(userid:int): 
-        print(f"Attemping to delete {userid} via static_method")
+        logger.info(f"[LOGGER]:[Entered Delete Route for {userid}]")
         try:
             await user_service.delete_u1_user_fn(userid=userid) 
         except KeyError:
             # print("TP-KeyError caught in try-except!")
             # raise HTTPException(status_code=404, detail=f"User [{userid}] does not exist!")
-            raise HTTPException(status_code=404, detail= {"msg": "User does not exist!",
+            logger.error(f"[LOGGER]:[User does not exist: [{userid}]]")
+            raise HTTPException(status_code=404, detail= {"msg": "[HTTPException]User does not exist!",
                                                           "userid": userid})
             
     # @user_router.delete("/{userid}/delete-v2") #15
