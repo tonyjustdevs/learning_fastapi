@@ -4,19 +4,26 @@ from fastapi import APIRouter, HTTPException
 
 import logging
 # Unable to remove existing handlers from the logger
-#BUG Issue#64 logging.getLogger().handlers = [] 
+
+logging.getLogger().handlers = [] # #BUG Issue#64 temp fix remove persistent cached tony_cool_logs.txt from being used
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(filename="log.txt")
+logging.basicConfig(
+    format="%(levelname)-6s %(name)-20s %(asctime)s.%(msecs)03d \n\t\t\t %(message)s",
+    datefmt="%Y-%m-%d-%H:%M:%S",
+    filename="log.txt")
 logger.setLevel(logging.DEBUG) # [diwec]: [debug->info->warning->error->critical]
 # ie if logging.ERROR->only error+critical logged
 
-cached_str = f"__cached__: [{__cached__}]" # temp visibility
-print(f"[print]-{cached_str}")
-logger.info(f"[LOGGER]-{cached_str}")
+# print(f"[print]-{cached_str}")
+# cached_str = f"__cached__: [{__cached__}]" # temp visibility
+# logger.info(f"[LOGGER]-{cached_str}")
 
-consolelogger = logging.StreamHandler()
-logger.addHandler(consolelogger)
+
+consoleHandler = logging.StreamHandler()
+# logger.addHandler(consoleHandler)
+full_logger = logging.getLogger("") #Dont understand what this actually does.
+full_logger.addHandler(consoleHandler)
 
 def create_user_router():
     
