@@ -3,9 +3,13 @@ from app.services.users import User_Service
 from fastapi import APIRouter, HTTPException
 
 import logging
+# Unable to remove existing handlers from the logger
+#BUG Issue#64 logging.getLogger().handlers = [] 
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename="log.txt")
+logger.setLevel(logging.DEBUG) # [diwec]: [debug->info->warning->error->critical]
+# ie if logging.ERROR->only error+critical logged
 
 def create_user_router():
     
@@ -42,12 +46,13 @@ def create_user_router():
 
     @user_router.delete("/{userid}/delete") #15
     async def delete_u1_endpoint_fn(userid:int): 
-        print(f"Attemping to delete {userid} via static_method")
+        logger.info(f"Attemping to delete {userid} via static_method")
         try:
             await user_service.delete_u1_user_fn(userid=userid) 
         except KeyError:
             # print("TP-KeyError caught in try-except!")
             # raise HTTPException(status_code=404, detail=f"User [{userid}] does not exist!")
+            logger.error(f"User does not exist: [{userid}]")
             raise HTTPException(status_code=404, detail= {"msg": "User does not exist!",
                                                           "userid": userid})
             
