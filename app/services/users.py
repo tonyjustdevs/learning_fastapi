@@ -82,7 +82,9 @@ class User_Service:
 
     @staticmethod
     async def delete_u1_user_fn(userid: int):
-        print(f".......inside delete_u1_fn with argument userid: {userid}")
+        print(f"[Inside UserService.delete_fn]: [{userid}]")
+        # print(f"__file__: [{__file__}]")
+        # print(f"__cached__: [{__cached__}]")
         del u1_dicts[userid]
         del u1a_dicts[userid]
         del u4_dicts[userid]

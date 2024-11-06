@@ -11,6 +11,13 @@ logging.basicConfig(filename="log.txt")
 logger.setLevel(logging.DEBUG) # [diwec]: [debug->info->warning->error->critical]
 # ie if logging.ERROR->only error+critical logged
 
+cached_str = f"__cached__: [{__cached__}]" # temp visibility
+print(f"[print]-{cached_str}")
+logger.info(f"[LOGGER]-{cached_str}")
+
+consolelogger = logging.StreamHandler()
+logger.addHandler(consolelogger)
+
 def create_user_router():
     
     user_router     = APIRouter(prefix="/custom_router_prefix_user", tags=["custom_users_tag"])
@@ -46,14 +53,14 @@ def create_user_router():
 
     @user_router.delete("/{userid}/delete") #15
     async def delete_u1_endpoint_fn(userid:int): 
-        logger.info(f"Attemping to delete {userid} via static_method")
+        logger.info(f"[LOGGER]:[Entered Delete Route for {userid}]")
         try:
             await user_service.delete_u1_user_fn(userid=userid) 
         except KeyError:
             # print("TP-KeyError caught in try-except!")
             # raise HTTPException(status_code=404, detail=f"User [{userid}] does not exist!")
-            logger.error(f"User does not exist: [{userid}]")
-            raise HTTPException(status_code=404, detail= {"msg": "User does not exist!",
+            logger.error(f"[LOGGER]:[User does not exist: [{userid}]]")
+            raise HTTPException(status_code=404, detail= {"msg": "[HTTPException]User does not exist!",
                                                           "userid": userid})
             
     # @user_router.delete("/{userid}/delete-v2") #15
