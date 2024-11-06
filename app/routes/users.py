@@ -37,9 +37,15 @@ def create_user_router():
 
     @user_router.get("/{userid}",response_model=User1_cls)
     async def userid_endpoint_fn(userid:int):
-        u1_instance = await user_service.get_u1_instance_fn(userid)
-        return u1_instance
-
+        try:
+            u1_instance = await user_service.get_u1_instance_fn(userid)
+            return u1_instance
+        except KeyError as e:
+            keyerror_msg_str = f"User does not exist! [{userid}]. Please Try Again!" 
+            logger.error(keyerror_msg_str)
+            raise HTTPException(status_code=404, detail={'msg':keyerror_msg_str,
+                                                         'user':userid}
+                                )
     @user_router.post("/",response_model=User2_cls) 
     async def post_u1_endpoint_fn(u1_postbodyrequest:User1_cls): #24
         new_userid = await user_service.create_new_update_u1_user_fn(u1_postbodyrequest) #25
