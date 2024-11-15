@@ -48,11 +48,19 @@ def create_user_router():
         #                         )
     @user_router.post("/",response_model=User2_cls) 
     async def post_u1_endpoint_fn(u1_postbodyrequest:User1_cls): #24
-        new_userid = await user_service.create_new_update_u1_user_fn(u1_postbodyrequest) #25
-        users = user_service.calc_nbr_of_urs()
-        u2_instance = User2_cls(u2_userid_attr=new_userid,
-                                u2_users_attr=users)
-        return u2_instance #28
+        logger.info("Entered Post Endpoint...")
+        
+        try:
+            new_userid = await user_service.create_new_update_u1_user_fn(u1_postbodyrequest) #25
+            users = user_service.calc_nbr_of_urs() #85 issue
+            u2_instance = User2_cls(u2_userid_attr=new_userid,
+                                    u2_users_attr=users)
+            return u2_instance #28
+        except Exception as e:
+            errormsg =f"Exception captured in PostResponse: [{e}]"
+            logger.error(errormsg)
+            print(errormsg)
+            
 
     @user_router.get("/",response_model=U3_Users_cls) #33
     def userid_endpoint_fn(start:int=0, limit:int=2): #34
