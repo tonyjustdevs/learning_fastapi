@@ -27,8 +27,8 @@ class User_Service:
         pass
     
     @staticmethod
-    async def calc_nbr_of_urs()->int:
-        return await len(u1_dicts)
+    async def calc_nbr_of_users()->int:
+        return len(u1_dicts)
 
     @staticmethod
     async def get_u1_instance_fn(userid: int=0)->User1_cls:
