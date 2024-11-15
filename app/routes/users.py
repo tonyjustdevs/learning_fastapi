@@ -52,7 +52,7 @@ def create_user_router():
         
         try:
             new_userid = await user_service.create_new_update_u1_user_fn(u1_postbodyrequest) #25
-            users = user_service.calc_nbr_of_urs() #85 issue
+            users = await user_service.calc_nbr_of_users() #85 issue
             u2_instance = User2_cls(u2_userid_attr=new_userid,
                                     u2_users_attr=users)
             return u2_instance #28
