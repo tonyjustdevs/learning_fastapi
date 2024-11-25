@@ -1,5 +1,5 @@
 from app.schemas.users import User1_cls, User2_cls, U3_Users_cls
-
+from exceptions import CustomException
     # DB
 u1_dicts = {
     0:{
@@ -33,7 +33,7 @@ class User_Service:
     @staticmethod
     async def get_u1_instance_fn(userid: int=0)->User1_cls:
         if userid not in u1_dicts:
-            raise CustomException
+            raise CustomException(userid)
         user_u1_dict = u1_dicts[userid]     #29
         user_u1a_dict = u1a_dicts[userid]   #29
         user_u4_dict = u4_dicts[userid]   #39
@@ -86,7 +86,7 @@ class User_Service:
     async def delete_u1_user_fn(userid: int):
         print(f"[Inside UserService.delete_fn]: [{userid}]")
         if userid not in u1_dicts:
-            raise CustomException
+            raise CustomException(userid)
         # print(f"__file__: [{__file__}]")
         # print(f"__ca  ched__: [{__cached__}]")
         del u1_dicts[userid]
