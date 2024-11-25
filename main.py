@@ -7,14 +7,21 @@ print_start_info(__file__)
 ############################## START CODE HERE ###############################
 ##############################################################################
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request  
 from pydantic import BaseModel
 from typing import Optional, List
 from app.routes.users import user_router
-
+from exceptions import CustomException
+from fastapi.responses import JSONResponse
 app = FastAPI()
 app.include_router(user_router)
 
+@app.exception_handler(CustomException)
+def custom_exception_handler(req: Request, exc: CustomException):
+  return JSONResponse(
+    status_code=418,
+    content={"message":f"Something happened! {exc}"} #exc.name needs inse.name attribute
+  )
 
 
 

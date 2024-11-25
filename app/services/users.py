@@ -1,5 +1,5 @@
 from app.schemas.users import User1_cls, User2_cls, U3_Users_cls
-
+from exceptions import CustomException
     # DB
 u1_dicts = {
     0:{
