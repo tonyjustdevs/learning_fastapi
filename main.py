@@ -20,7 +20,7 @@ app.include_router(user_router)
 def custom_exception_handler(req: Request, exc: CustomException):
   return JSONResponse(
     status_code=418,
-    content={"message":f"Something happened! {exc}"} #exc.name needs inse.name attribute
+    content={"message":f"Something happened! {exc.name}"} #exc.name needs inse.name attribute
   )
 
 
